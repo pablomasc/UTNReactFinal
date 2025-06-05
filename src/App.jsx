@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className='fondo'>
-          <h1>App Evaluación Módulo 2</h1>
+          <h1>App Evaluación Final React</h1>
           <NavBar />
           <Routes>
             <Route path='/' element={<ListaProductosScr />} />

@@ -1,13 +1,19 @@
+import { collection, getDocs} from 'firebase/firestore'
+import database from '../config/firebase'
+
 export const getProducts = async () =>{
     try{
-        const response = await fetch(
-            'http://localhost:5173/datos.json',
-            {
-                method: 'GET'
+        const productos_collection_reference = collection(database, 'productos')
+        const result = await getDocs(productos_collection_reference)
+
+        const lista_formateada = result.docs.map((document) => {
+            return {
+                id: document.id,
+                ...document.data()
             }
-        )
-        const data = await response.json()
-        return data
+        })
+
+        return lista_formateada
     }
     catch(error){
         console.error('Error al obtener productos:', error)

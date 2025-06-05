@@ -18,13 +18,17 @@ function DetalleProductoScr() {
     getProductDetail()
   }, [])
 
+  // agregado de html al string 
+
+  const descripcionBr = product?.descripcion.replace(/(\n)+/g, '<br /><br />');
+
   return (
     <>
     <div className='fondoDetalleProducto'>
       <div className='fondoDescripcionImagen'><img src={product?.imagen} alt={product?.nombre} className='imagenProductoGrande'/></div>
       <div className='fondoDescripcionTexto'>
         <h2>{product?.nombre}</h2>
-        <p>{product?.descripcion}</p>
+        <p><div dangerouslySetInnerHTML={{ __html: descripcionBr}}></div></p>
         <div className='fondoComprar'>
           <div className='contenedorPrecio'><p className='precio'>${product?.precio}</p></div>
           <div className='contenedorBoton'><p><button>Comprar!</button></p></div>
